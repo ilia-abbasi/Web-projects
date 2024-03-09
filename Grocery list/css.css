@@ -1,0 +1,78 @@
+* {
+	
+	font-family: verdana;
+	font-weight: 600;
+	outline: none;
+}
+
+label {
+	
+	font-size: 140%;
+}
+
+div.main {
+	display: flex;
+	justify-content: center;
+}
+
+div.container {
+
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	border-radius: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	box-shadow:  4px 4px 7px #666666,
+				-4px -4px 7px #ffffff;
+}
+
+div.containe {
+
+	flex-direction: column;
+	position: relative;
+	width: 40%;
+	display: flex;
+	justify-content: start;
+	align-self: flex-end;
+	border-radius: 15px;
+	box-shadow:  4px 4px 7px #666666,
+				-4px -4px 7px #ffffff;
+}
+
+.add-button {
+	
+	color: black;
+	background-color: white;
+	margin-left: 9px;
+	border: none;
+	border-radius: 15px;
+	padding: 6px;
+	box-shadow:  4px 4px 7px #666666,
+				-4px -4px 7px #ffffff;
+}
+
+#get {
+	
+	padding-left: 6px;
+	border: none;
+	border-radius: 15px;
+	box-shadow: inset 1px 1px 6px #666666,
+				inset -1px -1px 6px #ffffff;
+}
+
+.right {
+	
+	position: absolute;
+	right: 20px;
+}
+
+li {
+	
+	margin-bottom: 20px;
+}
+
+h2 {
+	
+	margin-left: 15px;
+}
