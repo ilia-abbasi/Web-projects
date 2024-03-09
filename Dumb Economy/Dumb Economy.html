@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+
+
+
+
+<head>
+<meta charset = "utf-8">
+<title>Dumb Economy</title>
+
+<style>
+
+body {
+
+	background: linear-gradient(#89faf8, white);
+	background-repeat: no-repeat;
+}
+
+h1 {
+
+	font-size: 300%;
+	text-align: center;
+}
+
+h2 {
+
+	font-size: 250%;
+}
+
+ul {
+
+	list-style-type: none;
+	position: sticky;
+}
+
+li {
+
+	display: inline;
+	font-weight: 700;
+	font-size: 150%;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+button {
+
+	margin-right: 60px;
+	margin-left: 60px;
+	padding: 10px;
+	color: black;
+	font-weight: 700;
+	border-radius: 20%;
+	border: none;
+	background: linear-gradient(145deg, #ffffff, #e6e6e6);
+	box-shadow:  20px 20px 20px #666666,
+				-20px -20px 20px #ffffff;
+}
+
+button:hover {
+
+	background: linear-gradient(145deg, #e6e6e6, #ffffff);
+	box-shadow:  20px 20px 20px #666666,
+				-20px -20px 20px #ffffff;
+}
+
+button:active {
+
+	background: #ffffff;
+	box-shadow: inset 20px 20px 20px #666666,
+				inset -20px -20px 20px #ffffff;
+
+}
+
+span.cost {
+
+	font-size: 150%;
+	font-weight: 700;
+}
+
+span.alert {
+
+	color: red;
+	font-size: 200%;
+	font-weight: 700;
+	text-align: center;
+	margin-top: 10px;
+	border-bottom: solid red 3px;
+}
+
+div.container {
+
+	display: flex;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+</style>
+
+</head>
+
+
+<script>
+
+var storage0 = localStorage.key(0);
+var storage1 = localStorage.key(1);
+var storage2 = localStorage.key(2);
+var storage3 = localStorage.key(3);
+var storage4 = localStorage.key(4);
+var coin = 0;
+var wood = 0;
+var metal = 0;
+var coinup = 20;
+var coinget = 1;
+
+function addcoin(){
+	
+	coin += coinget;
+	document.getElementById("coinlabel").innerHTML = coin;
+	document.getElementById("alert").innerHTML = "";
+}
+
+function addwood(){
+
+	if(coin >= 10){
+	
+		wood++;
+		coin -= 10;
+		document.getElementById("woodlabel").innerHTML = wood;
+		document.getElementById("coinlabel").innerHTML = coin;
+		document.getElementById("alert").innerHTML = "";
+	} else {
+	
+		document.getElementById("alert").innerHTML = "You need 10$";
+	}
+}
+
+function upcoin(){
+
+	if(coin >= coinup){
+	
+		coin -= coinup;
+		coinget += 1;
+		
+		if(coinup % 2 == 0){
+			
+			coinup += coinup * 1.5;
+		} else {
+		
+			coinup += coinup * 2;
+		}
+		
+		document.getElementById("coinlabel").innerHTML = coin;
+		document.getElementById("coinup").innerHTML = coinup;
+		document.getElementById("alert").innerHTML = "";
+		
+	} else {
+	
+		document.getElementById("alert").innerHTML = "You need " + coinup + "$";
+	}
+}
+
+function addmetal(){
+
+	if(coin >= 100){
+	
+		coin -= 100;
+		metal += 1;
+		
+		document.getElementById("coinlabel").innerHTML = coin;
+		document.getElementById("metallabel").innerHTML = metal;
+		document.getElementById("alert").innerHTML = "";
+	} else {
+	
+		document.getElementById("alert").innerHTML = "You need 100$";
+	}
+}
+
+function save(){
+
+	localStorage.setItem(storage0, coin);
+	localStorage.setItem(storage1, wood);
+	localStorage.setItem(storage2, metal);
+	localStorage.setItem(storage3, coinup);
+	localStorage.setItem(storage4, coinget);
+}
+
+function load() {
+
+	coin = Number(localStorage.getItem(storage0));
+	wood = Number(localStorage.getItem(storage1));
+	metal = Number(localStorage.getItem(storage2));
+	coinup = Number(localStorage.getItem(storage3));
+	coinget = Number(localStorage.getItem(storage4));
+	document.getElementById("coinlabel").innerHTML = coin;
+	document.getElementById("woodlabel").innerHTML = wood;
+	document.getElementById("metallabel").innerHTML = metal;
+	document.getElementById("coinup").innerHTML = coinup;
+}
+</script>
+
+
+<body>
+
+<h1>Dumb Economy</h1>
+<hr>
+
+<ul align = "center">
+
+	<li>Money: <span  id="coinlabel">0</span> $</li>
+	<li>Woods: <span  id="woodlabel">0</span> planks</li>
+	<li>Iron: <span  id="metallabel">0</span> Kg</li>
+
+</ul>
+
+<br>
+
+<h2>Get:</h2>
+
+<div align = "center">
+
+<button onclick = "addcoin()">Get Money</button>
+<button onclick = "addwood()">Buy Wood</button>
+<button onclick = "addmetal()">Buy Iron</button>
+
+</div><br>
+
+<h2>Upgrade:</h2>
+
+<button onclick = "upcoin()">Upgrade Money</button><span class = "cost">Cost: </span>
+<span id="coinup" class="cost">20</span><span class = "cost"> $</span>
+
+<br>
+
+<div align = "center" style = "text-align: center;">
+<span class = "alert" id = "alert">
+
+</span>
+</div>
+<br><br><br><br>
+<div class = "container">
+
+<button onclick = "save()">Save</button>
+<button onclick = "load()">Load</button>
+
+</div>
+
+</body>
+</html>
